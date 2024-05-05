@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4>
+    ROLE ===>
+    {{user.get_role}}
+</h4>
+
+USER DASHBOARD!!!!
+
+<h3>
+    You are a {{user.role}}
+</h3>
+
+{{user}}
+
+{% endblock %}
+

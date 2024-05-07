@@ -64,10 +64,10 @@ class User(AbstractBaseUser):
 
     # required fields
 
-    date_joined = models.DateField(auto_now_add=True)
-    last_login = models.DateField(auto_now_add=True)
-    created_date = models.DateField(auto_now_add=True)
-    modified_date = models.DateField(auto_now=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
@@ -110,8 +110,8 @@ class UserProfile(models.Model):
     pin_code = models.CharField(max_length=6,blank=True,null=True)
     latitude = models.CharField(max_length=20, blank =True, null=True)
     longitude = models.CharField(max_length=20, blank =True, null=True)
-    created_at = models.DateField(auto_now_add=True)
-    modified_at = models.DateField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.email

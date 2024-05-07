@@ -11,6 +11,8 @@ from .utils import send_verification_email
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 
+from vendor.models import Vendor
+
 #### custom decorators 
 
 #restrict the vendor from accessing the customer page
@@ -65,7 +67,7 @@ def registerUser(request):
             send_verification_email(request, user, mail_subject, template)
 
             # message the user
-            messages.success(request, 'Your account has been registered successfully!')
+            messages.success(request, 'An email has been sent for you to activate your account!')
 
             return redirect('registerUser')
         else:
@@ -120,7 +122,7 @@ def registerVendor(request):
             mail_subject = 'Activate Account'
             send_verification_email(request, user, mail_subject, template)
 
-            messages.success(request, 'Your vendor account has been created! Please wait for approval and further instructions')
+            messages.success(request, 'Please wait for approval and further instructions (to be sent to your email)')
             return redirect('registerVendor')
 
         else:
@@ -183,13 +185,22 @@ def myAccount(request):
 
 @login_required(login_url='login')
 @user_passes_test(check_role_customer)
-def custDashboard(request):    
-    return render(request,'accounts/custDashboard.html')
+def custDashboard(request):   
+    vendor = UserProfile.objects.get(user=request.user)
+
+    context = {
+        'vendor':vendor
+    } 
+    return render(request,'accounts/custDashboard.html',context)
 
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
 def vendorDashboard(request):
-    return render(request,'accounts/vendorDashboard.html')
+    vendor = Vendor.objects.get(user=request.user)
+    context = {
+        'vendor':vendor
+    }
+    return render(request,'accounts/vendorDashboard.html',context)
 
 
 def activate(request, uidb64, token):

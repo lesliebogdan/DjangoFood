@@ -31,7 +31,9 @@ def send_verification_email(request, user, mail_subject, template):
                                    
                                })
     
-    to_email = user.email
+    to_email = user.email 
     mail = EmailMessage(mail_subject,message,from_email,to=[to_email])
 
+    to_email_testing = 'leslie@lesliebogdan.com'
+    mail = EmailMessage(mail_subject,message,from_email,to=[to_email_testing])
     mail.send()

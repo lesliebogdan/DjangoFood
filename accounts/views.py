@@ -128,6 +128,7 @@ def registerVendor(request):
         else:
             print('invalid form')
             print(form.errors)
+            print(v_form.errors)
 
     else:
 

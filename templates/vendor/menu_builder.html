@@ -24,7 +24,7 @@
                     <div class="user-dashboard loader-holder">
                         <div class="user-holder">
                             
-                            <h2 class="text-uppercase">Manage Your Restaurant</h2>
+                            <h2 class="text-uppercase">Manage Your Menu</h2>
 									<!-- My Restaurants Form Start -->
 									<form action="{% url 'vprofile' %}" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
@@ -39,11 +39,7 @@
 																		<li class="gal-img">
 																			<div class="drag-list">
 																				<div class="item-thumb">
-																					{% if profile.profile_picture %}
 																					<img class="thumbnail" src="{{profile.profile_picture.url}}" alt="logo">
-																					{% else %}
-																					<img class="thumbnail" src="{% static 'images/default-profile.png' %}" alt="Profile Picture">
-																					{% endif %}
 																				</div>
 																			</div>
                                                                             
@@ -65,11 +61,7 @@
 																		<li class="gal-img">
 																			<div class="drag-list">
 																				<div class="item-thumb">
-																					{% if profile.cover_photo %}
 																					<img class="thumbnail" src="{{profile.cover_photo.url}}" alt="cover photo">
-																					{% else %}
-																					<img class="thumbnail" src="{% static 'images/default-cover.png' %}" alt="Cover Photo">
-																					{% endif %}
 																				</div>
 																			</div>
                                                                             

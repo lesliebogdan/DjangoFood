@@ -15,6 +15,9 @@ class Category(models.Model):
         verbose_name= 'category'
         verbose_name_plural = 'categories'
 
+    def clean(self):
+        self.category_name = self.category_name.capitalize()
+
     def __str__(self):
         return self.category_name
 
@@ -30,5 +33,8 @@ class FoodItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    def clean(self):
+        self.food_title = self.food_title.capitalize()
+
     def __str__(self):
         return self.food_title

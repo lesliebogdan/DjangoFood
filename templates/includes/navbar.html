@@ -7,7 +7,7 @@
 		<!-- Header Start -->
 		<header id="header">
 			<div class="main-header">
-				<div class="container">
+				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 							<div class="logo">
@@ -37,11 +37,11 @@
 								<h1>{{user.is_authenticated}}</h1>
 								
 								{% if user.is_authenticated %}
-								<h1>INSIDE THE user</h1>
+								<a href="{%url 'marketplace' %}" class="btn btn-outline-danger text-uppercase font-weight-bold"> Marketplace</a>
 								<a class="cs-color cs-popup-joinus-btn login-popup" href="{% url 'myAccount' %}">My Account</a>
 								<a class="cs-color cs-popup-joinus-btn login-popup text-danger" href="{% url 'logout' %}">Logout</a>
 								{% else %}
-								<h1>OUTSIDE THE user</h1>
+								
 								<a class="cs-color cs-popup-joinus-btn login-popup" href="{% url 'login' %}">Login</a> / 
 									<span><a href="{% url 'registerUser' %}" class="cs-color cs-popup-joinus-btn login-popup ml-0">Register</a></span><a class="get-start-btn" href="{% url 'registerVendor' %}">
 									Register

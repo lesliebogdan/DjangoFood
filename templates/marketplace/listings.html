@@ -1,6 +1,7 @@
 
-{% extends 'base.html' %}
 
+{% extends 'base.html' %}
+{% load static %}
 {% block content%}
 
 <!-- Main Section Start -->
@@ -17,44 +18,49 @@
                             <div class="listing-sorting-holder">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <h4>XXX SOME NUMBER Restaurant's found</h4>
+                                        <h4>{{vendor_count}} Restaurant's found</h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="listing simple">
                                 <ul>
-                                    <li>
+                                    {% for vendor in vendors%}
+                                    <li style="line-height:15px;">
                                         <div class="img-holder">
                                             <figure>
-                                                <a href="#"><img src="assets/extra-images/listing-logo18.png" class="img-list wp-post-image" alt=""></a>
+
+                                                <a href="{% url 'vendor_detail' vendor.vendor_slug %}">
+                                                    {% if vendor.user_profile.profile_picture %}
+                                                    <img src="{{vendor.user_profile.profile_picture.url}}" class="img-list wp-post-image" alt="">
+                                                    {% else %}
+                                                    <img src="{% static 'images/default-profile.PNG' %}" class="img-list wp-post-image" alt="">
+                                                    {% endif %}
+                                                </a>
+                                            
                                             </figure>
                                             <span class="restaurant-status close"><em class="bookmarkRibbon"></em>Close</span>
                                         </div>
                                         <div class="text-holder">
-                                            <div class="list-rating">
-                                                <div class="rating-star">
-                                                    <span class="rating-box" style="width: 100%;"></span>
-                                                </div>
-                                                <span class="reviews">(1)</span>
-                                            </div>
+
                                             <div class="post-title">
                                                 <h5>
-                                                    <a href="listing-detail.html">Restaurant Demo</a>
-                                                    <span class="sponsored text-color">Sponsored</span>
+                                                    <a href="{% url 'vendor_detail' vendor.vendor_slug %}">{{vendor.vendor_name}}</a>
                                                 </h5>
                                             </div>
-                                            <span class="post-categories"><span>Type of food :
-                                                </span> Apple
-                                                Juice</span>
+                                            {% if vendor.user_profile.address %}
+                                            <span><small class="text-muted">{{vendor.user_profile.address}}</small></span>
+                                            {% else %}
+                                            <span><small class="text-muted">No address found</small></span>
                                             
+                                            {% endif %}
                                         </div>
                                         <div class="list-option">
 
-                                            <a href="#" class="viewmenu-btn text-color">View Menu</a>
+                                            <a href="{% url 'vendor_detail' vendor.vendor_slug %}" class="viewmenu-btn text-color">View Menu</a>
                                         </div>
                                     </li>
                                     
-
+                                    {% endfor %}
                                 </ul>
                             </div>
                             
@@ -64,7 +70,7 @@
                                 <strong>I'm not Listed!</strong><span>is your restaurant or
                                     business not
                                     listed on over site</span>
-                                <a href="#" class="request-btn">Add Your business!</a>
+                                <a href="{% url 'registerVendor'%}" class="request-btn">Add Your business!</a>
                             </div>
                         </div>
                     </div>

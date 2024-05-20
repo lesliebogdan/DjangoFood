@@ -18,16 +18,17 @@
 						<div class="company-logo">
 							<ul>
 								
-									{% for vendor in vendors%}
+									{% for vendor in vendors %}
 									
 									<li class="has-border">
 										<figure>
-										{% if vendor.user_profile.profile_pictire %}
-										<a href="#"><img src="{{vendor.user_profile.profile_picture.url}}" class="attachment-full size-full wp-post-image" alt=""></a>
+										{% if vendor.user_profile.profile_picture %}
+										<a href="#"><img src="{{vendor.user_profile.profile_picture.url}}" class="attachment-full size-full wp-post-image" height="125" alt=""></a>
+
 										{% else %}
-										<a href="#"><img src="{% static 'images/default-profile.PNG' %}" class="attachment-full size-full wp-post-image" alt=""></a>
+										<div>Leslie Out</div>										<a href="#"><img src="{% static 'images/default-profile.PNG' %}" class="attachment-full size-full wp-post-image" alt=""></a>
 										{% endif %}
-										</figure>
+									</figure>
 									</li>
 									
 									{% endfor %}
@@ -57,7 +58,7 @@
 										<div class="img-holder">
 											
 										<a href="">
-											<figure><a href="#"><img src="assets/extra-images/listing-logo18.png" class="img-thumb wp-post-image" alt=""></a></figure>
+											<figure><a href="#"><img src="" class="img-thumb wp-post-image" alt=""></a></figure>
 										</a>
 											<span class="restaurant-status close">
 												<em class="bookmarkRibbon"></em>Close

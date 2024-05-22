@@ -41,7 +41,7 @@ def vprofile(request):
         else:
             print(profile_form.errors)
             print(vendor_form.errors)
-            #messages.error(request, 'Error with the data to be saved, please correct them and try again')
+            messages.error(request, 'Error with the data to be saved, please correct them and try again')
     else:
 
         profile_form = UserProfileForm(instance = profile)

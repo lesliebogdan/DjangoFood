@@ -5,7 +5,7 @@ from .models import Cart
 
 from marketplace.context_processors import get_cart_counter,get_cart_amounts
 
-from django.db.models import Prefetch
+from django.db.models import Prefetch,Q
 
 from django.http import HttpResponse, JsonResponse
 
@@ -138,16 +138,13 @@ def search(request):
         radius = request.GET['radius']
         keyword = request.GET['keyword']
 
-        print(address)
         vendors = Vendor.objects.filter(vendor_name__icontains=keyword,is_approved=True,user__is_active=True)
-
-        print(vendors)
 
         # get vendor ids that has the food item the user is looking for
 
-        ######fetch_vendors_by_fooditems = FoodItem.objects.filter(food_title__icontains=keyword, is_available=True).values_list('vendor', flat=True)
+        fetch_vendors_by_fooditems = FoodItem.objects.filter(food_title__icontains=keyword, is_available=True).values_list('vendor', flat=True)
         
-        #vendors = Vendor.objects.filter(Q(id__in=fetch_vendors_by_fooditems) | Q(vendor_name__icontains=keyword, is_approved=True, user__is_active=True))
+        vendors = Vendor.objects.filter(Q(id__in=fetch_vendors_by_fooditems) | Q(vendor_name__icontains=keyword, is_approved=True, user__is_active=True))
         #if latitude and longitude and radius:
         #    pnt = GEOSGeometry('POINT(%s %s)' % (longitude, latitude))
 
@@ -164,5 +161,4 @@ def search(request):
         #    'source_location': address,
         }
 
-        #return render(request, 'marketplace/listings.html')
         return render(request, 'marketplace/listings.html', context)

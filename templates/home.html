@@ -19,11 +19,12 @@
 							<ul>
 								
 									{% for vendor in vendors %}
-									
+
 									<li class="has-border">
 										<figure>
 										{% if vendor.user_profile.profile_picture %}
-										<a href="#"><img src="{{vendor.user_profile.profile_picture.url}}" class="attachment-full size-full wp-post-image" height="125" alt=""></a>
+										
+										<a href="{% url 'vendor_detail' vendor.vendor_slug %} "><img src="{{vendor.user_profile.profile_picture.url}}" class="attachment-full size-full wp-post-image" height="125" alt=""></a>
 
 										{% else %}
 										<div>Leslie Out</div>										<a href="#"><img src="{% static 'images/default-profile.PNG' %}" class="attachment-full size-full wp-post-image" alt=""></a>

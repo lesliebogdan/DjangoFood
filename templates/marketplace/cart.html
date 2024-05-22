@@ -30,7 +30,7 @@
                                             {% for item in cart_items %}
                                     
                                             <li id="cart-item-{{item.id}}">
-                                                <div class="image-holder"> <img src="{{item.fooditem.image.url}}" alt=""></div>
+                                                <div class="image-holder" > <img src="{{item.fooditem.image.url}}" alt="" style="height:100%; width:100%; object-fit:cover;"></div>
                                                 <div class="text-holder">
                                                     
                                                     <h6>{{item.fooditem.food_title}}</h6>

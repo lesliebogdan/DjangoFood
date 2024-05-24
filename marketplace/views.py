@@ -162,7 +162,7 @@ def search(request):
         context = {
             'vendors': vendors,
             'vendor_count': vendor_count,
-        #    'source_location': address,
+            'source_location': address,
         }
 
         return render(request, 'marketplace/listings.html', context)

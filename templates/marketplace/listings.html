@@ -53,6 +53,12 @@
                                             <span><small class="text-muted">No address found</small></span>
                                             
                                             {% endif %}
+                                            <br>
+                                            {% if source_location %}
+                                            <span><small>
+                                                <b>{{vendor.kms}}km</b> away from {{source_location}}
+                                            </small></span>
+                                            {% endif %}
                                         </div>
                                         <div class="list-option">
 

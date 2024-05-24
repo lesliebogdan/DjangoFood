@@ -55,9 +55,9 @@ function onPlaceChanged (){
             }
 
             // city
-//            if(place.address_components[i].types[j]=='locality'){
-  //              $('#id_city').val(place.address_components[i].long_name)
-    //        }
+            if(place.address_components[i].types[j]=='locality'){
+                $('#id_city').val(place.address_components[i].long_name)
+            }
       
             // pin_code
             if(place.address_components[i].types[j]=='postal_code'){

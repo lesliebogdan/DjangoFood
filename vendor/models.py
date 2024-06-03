@@ -16,3 +16,24 @@ class Vendor(models.Model):
 
     def __str__(self):
         return self.vendor_name
+    
+DAYS = [
+    (1,('Monday')),
+    (2,('Tuesday')),
+    (3,('Wednesday')),
+    (4,('Thursday')),
+    (5,('Friday')),
+    (6,('Saturday')),
+    (7,('Sunday')),
+]
+
+HOURS_OF_DAY_24 = [
+    
+]
+
+class OpeningHour(models.Model):
+    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)
+    day = models.IntegerField(choices=DAYS)
+    from_hour = models.CharField()
+    to_hour = models.CharField()
+    is_closed = models.BooleanField(default=False)
